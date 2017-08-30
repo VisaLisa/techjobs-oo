@@ -44,7 +44,19 @@ public class JobController {
         // new Job and add it to the jobData data store. Then
         // redirect to the job detail view for the new Job.
 
-        return "";
+        if (errors.hasErrors()) {
+            return "new-job";
+        }
+        System.out.print(jobForm);
+
+        Job newJob = new Job(jobForm.getName(),
+                jobData.getEmployers().findById(jobForm.getEmployerId()),
+                jobData.getLocations().findById(jobForm.getLocations()),
+                jobData.getPositionTypes().findById(jobForm.getPositionTypes()),
+                jobData.getCoreCompetencies().findById(jobForm.getCoreCompetencies()));
+        jobData.add(newJob);
+
+        return "redirect/:job?id=" + newJob.getId();
 
     }
 }

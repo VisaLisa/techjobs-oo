@@ -29,7 +29,7 @@ public class JobForm {
      */
 
     @NotNull
-    private int locationId;
+    private int locationsId;
 
     @NotNull
     private int coreCompetencyId;
