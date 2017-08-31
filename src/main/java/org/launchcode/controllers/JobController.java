@@ -47,16 +47,24 @@ public class JobController {
         if (errors.hasErrors()) {
             return "new-job";
         }
-        System.out.print(jobForm);
 
-        Job newJob = new Job(jobForm.getName(),
-                jobData.getEmployers().findById(jobForm.getEmployerId()),
-                jobData.getLocations().findById(jobForm.getLocations()),
-                jobData.getPositionTypes().findById(jobForm.getPositionTypes()),
-                jobData.getCoreCompetencies().findById(jobForm.getCoreCompetencies()));
+        model.addAttribute("jobData", jobData);
+        jobData.getEmployers().findById(jobForm.getEmployerId());
+        Job newJob = new Job();
+        newJob.setName(jobForm.getName());
+        newJob.setEmployer(jobData.getEmployers().findById(jobForm.getEmployerId()));
+        newJob.setLocation(jobData.getLocations().findById(jobForm.getLocationId()));
+        newJob.setPositionType(jobData.getPositionTypes().findById(jobForm.getPositionTypeId()));
+        newJob.setCoreCompetency(jobData.getCoreCompetencies().findById(jobForm.getCoreCompetencyId()));
+
         jobData.add(newJob);
 
-        return "redirect/:job?id=" + newJob.getId();
+        model.addAttribute("name",newJob.getName());
+        model.addAttribute("employer", newJob.getEmployer());
+        model.addAttribute("location", newJob.getLocation());
+        model.addAttribute("position", newJob.getPositionType());
+        model.addAttribute("skill", newJob.getCoreCompetency());
+        return "redirect:/job?id=" + newJob.getId();
 
     }
 }

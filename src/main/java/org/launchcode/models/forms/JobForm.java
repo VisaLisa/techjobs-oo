@@ -29,7 +29,7 @@ public class JobForm {
      */
 
     @NotNull
-    private int locationsId;
+    private int locationId;
 
     @NotNull
     private int coreCompetencyId;
@@ -37,6 +37,9 @@ public class JobForm {
     @NotNull
     private int positionTypeId;
 
+    private String location;
+    private String coreCompetency;
+    private String positionType;
 
     private ArrayList<Employer> employers;
     private ArrayList<Location> locations;
@@ -52,10 +55,12 @@ public class JobForm {
         */
 
         employers = jobData.getEmployers().findAll();
-        locations = jobData.getLocations().findAll();
-        coreCompetencies = jobData.getCoreCompetencies().findAll();
-        positionTypes = jobData.getPositionTypes().findAll();
 
+        locations = jobData.getLocations().findAll();
+
+        coreCompetencies = jobData.getCoreCompetencies().findAll();
+
+        positionTypes = jobData.getPositionTypes().findAll();
     }
 
     public String getName() {
@@ -72,6 +77,54 @@ public class JobForm {
 
     public void setEmployerId(int employerId) {
         this.employerId = employerId;
+    }
+
+    public int getLocationId() {
+        return locationId;
+    }
+
+    public void setLocationId(int locationId) {
+        this.locationId = locationId;
+    }
+
+    public int getCoreCompetencyId() {
+        return coreCompetencyId;
+    }
+
+    public void setCoreCompetencyId(int coreCompetencyId) {
+        this.coreCompetencyId = coreCompetencyId;
+    }
+
+    public int getPositionTypeId() {
+        return positionTypeId;
+    }
+
+    public void setPositionTypeId(int positionTypeId) {
+        this.positionTypeId = positionTypeId;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getCoreCompetency() {
+        return coreCompetency;
+    }
+
+    public void setCoreCompetency(String coreCompetency) {
+        this.coreCompetency = coreCompetency;
+    }
+
+    public String getPositionType() {
+        return positionType;
+    }
+
+    public void setPositionType(String positionType) {
+        this.positionType = positionType;
     }
 
     public ArrayList<Employer> getEmployers() {
